@@ -1,6 +1,7 @@
 import {
     Button,
     HStack,
+    Heading,
     Image,
     List,
     ListItem,
@@ -22,27 +23,39 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     if (isLoading) return <Spinner />;
 
     return (
-        <List>
-            {genres.map((genre) => (
-                <ListItem key={genre.id} paddingY={"5px"}>
-                    <HStack>
-                        <Image
-                            src={getCroppedImageUrl(genre.image_background)}
-                            boxSize={"32px"}
-                            borderRadius={8}
-                        />
-                        <Button
-                            fontSize={"lg"}
-                            variant={"link"}
-                            onClick={() => onSelectGenre(genre)}
-                            fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
-                        >
-                            {genre.name}
-                        </Button>
-                    </HStack>
-                </ListItem>
-            ))}
-        </List>
+        <>
+            <Heading fontSize={"2xl"} marginBottom={3}>
+                Genres
+            </Heading>
+            <List>
+                {genres.map((genre) => (
+                    <ListItem key={genre.id} paddingY={"5px"}>
+                        <HStack>
+                            <Image
+                                src={getCroppedImageUrl(genre.image_background)}
+                                objectFit={"cover"}
+                                boxSize={"32px"}
+                                borderRadius={8}
+                            />
+                            <Button
+                                fontSize={"lg"}
+                                variant={"link"}
+                                whiteSpace={"normal"}
+                                textAlign={"left"}
+                                onClick={() => onSelectGenre(genre)}
+                                fontWeight={
+                                    genre.id === selectedGenre?.id
+                                        ? "bold"
+                                        : "normal"
+                                }
+                            >
+                                {genre.name}
+                            </Button>
+                        </HStack>
+                    </ListItem>
+                ))}
+            </List>
+        </>
     );
 };
 
