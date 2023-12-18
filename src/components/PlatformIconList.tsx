@@ -14,10 +14,10 @@ import { SiNintendo } from "react-icons/si";
 import { Platform } from "../hooks/useGames";
 
 interface Props {
-    platfoms: Platform[];
+    platforms: Platform[];
 }
 
-const PlatformIconList = ({ platfoms }: Props) => {
+const PlatformIconList = ({ platforms }: Props) => {
     const iconMap: { [key: string]: IconType } = {
         pc: FaWindows,
         playstation: FaPlaystation,
@@ -31,9 +31,13 @@ const PlatformIconList = ({ platfoms }: Props) => {
     };
 
     return (
-        <HStack marginY={'12px'}>
-            {platfoms.map((platform, index) => (
-                <Icon as={iconMap[platform.slug]} color="gray.500" />
+        <HStack marginY={"12px"}>
+            {platforms.map((platform) => (
+                <Icon
+                    key={platform.id}
+                    as={iconMap[platform.slug]}
+                    color="gray.500"
+                />
             ))}
         </HStack>
     );
